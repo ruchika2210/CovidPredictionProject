@@ -23,35 +23,47 @@ app = Flask(__name__)
 MODEL_PATH ='model_resnet50.h5'
 
 # Load your trained model
-model = load_model(MODEL_PATH)
+cnnModel = load_model(MODEL_PATH)
 
 
 
 
-def model_predict(img_path, model):
-    img = image.load_img(img_path, target_size=(224, 224))
+def model_predict(img_path, cnnModel):
+    # this is our code from colab 
+    img=image.load_img(img_path,target_size=(224,224))
 
-    # Preprocessing the image
-    x = image.img_to_array(img)
-    # x = np.true_divide(x, 255)
-    ## Scaling
+    x=image.img_to_array(img)
     x=x/255
-    x = np.expand_dims(x, axis=0)
+    x=np.expand_dims(x,axis=0)
+    img_data=x
+    print(cnnModel.predict(x))
+    
+    op = str((cnnModel.predict(x) > 0.5).astype("int32")[0][0])
+    return op
+
+    # img = image.load_img(img_path, target_size=(224, 224))
+
+    # # Preprocessing the image
+    # x = image.img_to_array(img)
+    # # x = np.true_divide(x, 255)
+    # ## Scaling
+    # x=x/255
+    # x = np.expand_dims(x, axis=0)
    
 
    
 
-    preds = model.predict(x)
-    preds=np.argmax(preds, axis=1)
-    if preds==0:
-        preds="The Car IS Audi"
-    elif preds==1:
-        preds="The Car is Lamborghini"
-    else:
-        preds="The Car Is Mercedes"
+    # preds = model.predict(x)
+    # preds=np.argmax(preds, axis=1)
+    # if preds==0:
+    #     preds="The Car IS Audi"
+    # elif preds==1:
+    #     preds="The Car is Lamborghini"
+    # else:
+    #     preds="The Car Is Mercedes"
     
     
-    return preds
+    # return preds
 
 
 @app.route('/', methods=['GET'])
@@ -73,7 +85,7 @@ def upload():
         f.save(file_path)
 
         # Make prediction
-        preds = model_predict(file_path, model)
+        preds = model_predict(file_path, cnnModel)
         result=preds
         return result
     return None
