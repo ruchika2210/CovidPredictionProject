@@ -1,10 +1,11 @@
 const express = require("express");
+
 const multer = require("multer");
 const bodyParser = require("body-parser");
 const port = process.env.PORT || 3000;
 const path = require("path");
 
-set storage engine
+// set storage engine
 const storage = multer.diskStorage({
   destination: "./uploads",
   filename: function (req, file, cb) {
@@ -65,5 +66,9 @@ app.post("/upload", async (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
-});
+  console.log(`Server started on port ${port}`);})
+
+
+
+
+
