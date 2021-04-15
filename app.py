@@ -67,9 +67,9 @@ def upload():
 
 @app.route('/uppp',methods=['POST'])
 def upp():
-    
+    print(request.files)
     image = request.files['IMG']
-    
+    print("REQUEST ARRIVED")
     basepath = os.path.dirname(__file__)
     file_path = os.path.join(
         basepath, 'uploads', secure_filename(image.filename
@@ -86,7 +86,11 @@ def upp():
         result= result
     )
     
-
+@app.route('/ad',methods=['POST'])
+def abcd():
+    print(request.files)
+    print('asdf')
+    return 'abcd'
 
 if __name__ == '__main__':
     app.run(debug=True)
