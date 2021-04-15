@@ -1,18 +1,19 @@
 const express = require("express");
 var FormData = require("form-data");
 const multer = require("multer");
-const bodyParser = require("body-parser");
 const port = process.env.PORT || 3000;
 const path = require("path");
 const fs = require("fs");
 const { default: axios } = require("axios");
-const http = require("http");
+
+let extension = "";
 
 // set storage engine
 const storage = multer.diskStorage({
   destination: "./uploads",
   filename: function (req, file, cb) {
-    cb(null, "EX-RAY" + path.extname(file.originalname));
+    extension = path.extname(file.originalname);
+    cb(null, "X-RAY" + path.extname(file.originalname));
   },
 });
 
@@ -58,45 +59,21 @@ app.post("/upload", async (req, res) => {
       } else {
         console.log("Image is uploaded successfully");
         var formData = new FormData({ maxDataSize: 10000000000 });
-        // var img = new Image();
-        // img.src = path(req.file.path);
-        // console.log(img);
-        // fs.readFile(__dirname + "/uploads/EX-RAY.png", function (err, data) {
-        //   if (err) throw err;
-        //   // const file = new File([data], "image.jpeg", { type: blob.type });
-        //   console.log(data, "DATA");
-        //   formData.append("IMG", data);
-        // });
-        // const s = fs.readFileSync(__dirname + "/uploads/EX-RAY.png");
-        // formData.append("IMG", s);
-        // console.log(formData);
-        axios
-          .get("http://nodejs.org/images/logo.png")
-          .then((res) => {
-            formData.append("my_logo", res);
-            console.log(formData);
-          })
-          .catch((err) => console.log(err));
-        // http.request("http://nodejs.org/images/logo.png", function (response) {
-        //
-        // });
 
-        // axios({
-        //   method: "post",
-        //   url: "http://127.0.0.1:5000/uppp",
-        //   data: formData,
-        //   headers: { "Content-Type": "multipart/form-data" },
-        // })
-        //   .then(function (response) {
-        //     //handle success
-        //     console.log(response);
-        //     res.json({ res: "Uploaded Succesfully" });
-        //   })
-        //   .catch(function (response) {
-        //     //handle error
-        //     console.log(response);
-        //   });
-        res.json({ res: "Uploaded Succesfully" });
+        formData.append(
+          "IMG",
+          fs.createReadStream(__dirname + "/uploads/X-RAY" + extension)
+        );
+
+        axios
+          .post("http://127.0.0.1:5000/uppp", formData, {
+            headers: formData.getHeaders(),
+          })
+          .then((response) => {
+            res.json(response.data);
+            //For deleting the used File
+            fs.unlinkSync(__dirname + "/uploads/X-RAY" + extension);
+          });
       }
     }
   });
