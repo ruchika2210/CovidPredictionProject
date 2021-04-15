@@ -5,7 +5,8 @@ const port = process.env.PORT || 3000;
 const path = require("path");
 const fs = require("fs");
 const { default: axios } = require("axios");
-require('../backendNode/MongoDB/model')
+const Covid = require("./MongoDB/model");
+const mongoose = require("mongoose");
 
 let extension = "";
 
@@ -78,6 +79,16 @@ app.post("/upload", async (req, res) => {
       }
     }
   });
+});
+
+//Sample mongo Test
+app.post("/send", async (req, res) => {
+  const covidd = new Covid({
+    name: "Ruchika",
+  });
+
+  covidd.save();
+  
 });
 
 app.listen(port, () => {
