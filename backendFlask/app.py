@@ -62,6 +62,7 @@ def upload():
         # Make prediction
         preds = model_predict(file_path, cnnModel)
         result=preds
+       
         return result
     return None
 
@@ -81,7 +82,7 @@ def upp():
         result = "Negative"
     elif preds == '0':
         result = "Positive"
-
+    
     return jsonify(
         result= result
     )
