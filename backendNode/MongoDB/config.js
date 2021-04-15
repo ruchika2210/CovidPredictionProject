@@ -1,5 +1,4 @@
 var mongoose = require('mongoose')
-require('mongodb')
 
 //Set up default mongoose connection
 var uri = 'mongodb+srv://RR-Covid:Vasantara7710@covidstorage.4cniv.mongodb.net/Login?retryWrites=true&w=majority'
@@ -11,15 +10,9 @@ mongoose.connect(uri, {
 	useUnifiedTopology: true,
 	useCreateIndex: true,
 	useFindAndModify: false
-})
+},() =>console.log('database is connected'))
 
-const db=mongoose.connection;
 
-db.once("open",() =>{
-    console.log("Mongodb started")
-})
-
-module.exports=mongoose
 
 
 
