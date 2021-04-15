@@ -17,7 +17,7 @@ export default class SignUp extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                     <input type="email" className="form-control" placeholder="Enter email" />
                 </div>
 
                 <div className="form-group">
@@ -28,8 +28,11 @@ export default class SignUp extends Component {
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                 <p className="forgot-password text-right">
                     Already registered <a href="#">sign in?</a>
+
                 </p>
             </form>
         );
+
+        
     }
 }
