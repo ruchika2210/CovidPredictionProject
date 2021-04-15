@@ -1,0 +1,31 @@
+.tabsContainerSignup {
+  display: flex;
+}
+
+.tabIndividual {
+  flex: auto;
+  padding: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.tabHospital {
+  flex: auto;
+  padding: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.active {
+  font-weight: 700;
+}
