@@ -83,11 +83,19 @@ app.post("/upload", async (req, res) => {
 
 //Sample mongo Test
 app.post("/send", async (req, res) => {
+  
   const covidd = new Covid({
     name: "Ruchika",
+
   });
 
-  covidd.save();
+  try {
+    await covidd.save();
+    res.send('successful');
+  } catch (error) {
+    res.status(500).send(error);
+  }
+
   
 });
 
