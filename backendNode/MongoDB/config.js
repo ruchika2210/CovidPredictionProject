@@ -19,7 +19,7 @@ db.once("open",() =>{
     console.log("Mongodb started")
 })
 
-export default  mongoose;
+module.exports=mongoose
 
 
 

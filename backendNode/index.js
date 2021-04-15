@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const { default: axios } = require("axios");
 require('mongoose')
+require('../backendNode/MongoDB/model')
 
 let extension = "";
 
