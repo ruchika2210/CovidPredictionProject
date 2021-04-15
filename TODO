@@ -1,0 +1,11 @@
+create auth.js in the routes folder and add the three routes in it.
+    1. signin
+    2. signup
+    3. signup_hospital
+
+configure auth.js with index.js
+create two models one for hospital and another for normal user
+store data in signup and retrive data in signin from mongo
+
+
+
