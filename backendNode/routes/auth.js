@@ -36,18 +36,18 @@ router.post("/signup", async (req, res) => {
 
 //signup hospital route
 router.post("/signupHospital", async (req, res) => {
-  const hospitalName = req.body.name;
+  const hospitalname = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
-  const contactNumber = req.body.number;
+  const contactnumber = req.body.number;
   try {
     //Checks if user exists already
     const existeduser = await normalUser.find({ email });
     if (!existeduser.length) {
       bcrypt.hash(password, saltRounds).then(async (password) => {
         const user = new hospitalUser({
-          hospitalName,
-          contactNumber,
+          hospitalname,
+          contactnumber,
           email,
           password,
         });
@@ -61,6 +61,9 @@ router.post("/signupHospital", async (req, res) => {
     console.log(err);
     res.send(err);
   }
+
+
+
 });
 
 module.exports = router;
