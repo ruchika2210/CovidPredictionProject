@@ -14,11 +14,14 @@ export default function Login() {
   };
 
   const handleSubmit = (e) => {
+    //request to server
     axios
       .post("/signin", { email, password })
       .then((response) => {
         console.log(response.data);
+
         if (response.data.res !== "Successful") {
+          //setting alert message if some issue is that
           setalert(response.data.res);
         }
       })

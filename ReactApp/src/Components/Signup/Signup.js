@@ -28,6 +28,8 @@ function Signup() {
         .then((response) => {
           if (response.data.res === "Successful") {
             console.log("DONE");
+
+            //redirects back to sign in page
             history.push("/sign-in");
             setname("");
             setemail("");
@@ -49,6 +51,7 @@ function Signup() {
         .then((response) => {
           if (response.data.res === "Successful") {
             console.log("DONE");
+            //redirects back to sign in page
             history.push("/sign-in");
             setname("");
             setemail("");
