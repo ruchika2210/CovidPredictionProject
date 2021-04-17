@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Signup.css";
+import axios from "axios";
 
 function Signup() {
   const [activeTab, setactiveTab] = useState("Individual");
@@ -17,12 +18,22 @@ function Signup() {
     setactiveTab("Individual");
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     console.log(name, password, email);
+
+    axios
+      .post("http://localhost:5000/signup", { name })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     setname("");
     setemail("");
     setpassword("");
     setnumber("");
+    e.preventDefault();
   };
 
   return (
@@ -151,7 +162,7 @@ function Signup() {
           <button
             type="submit"
             className="btn btn-primary btn-block"
-            onClick={handleSubmit}
+            onClick={(e) => handleSubmit(e)}
           >
             Sign Up
           </button>

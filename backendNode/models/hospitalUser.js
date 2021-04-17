@@ -1,41 +1,35 @@
-const mongoose=require('mongoose')
+const mongoose = require("mongoose");
 
-const Schema=mongoose.Schema;
+const Schema = mongoose.Schema;
 
+const HospitalUser = new Schema({
+  Hospitalname: {
+    type: String,
+    required: true,
+    maxlength: 50,
+  },
 
-const HospitalUser= new Schema({
-    Hospitalname:{
-        type:String,
-        required:true,
-        maxlength:50
-    },
+  contactnumber: {
+    type: Number,
+    required: true,
+    maxlength: 10,
+  },
 
-    contactnumber:{
-        typr:Number,
-        required:true,
-        maxlength:10
-    },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    maxlength: 255,
+  },
 
-    email:{
-        type:String,
-        required:true,
-        unique:true,
-        maxlength:255
-    },
-
-    password:{
-        type:String,
-        required:true,
-        maxlength:8,
-        validate(value){
-            if(value.toLowerCase().includes('password')){
-                throw new Error('password not valid')
-            }
-        }
-    }
+  password: {
+    type: String,
+    required: true,
+    maxlength: 8,
+  },
 });
 
-const Hospitaluser=mongoose.model("hospitaluser",HospitalUser)
+const Hospitaluser = mongoose.model("hospitaluser", HospitalUser);
 
 //export
-module.exports=Hospitaluser
+module.exports = Hospitaluser;
