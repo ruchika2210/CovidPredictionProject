@@ -26,12 +26,8 @@ const HospitalUser= new Schema({
     password:{
         type:String,
         required:true,
-        maxlength:8,
-        validate(value){
-            if(value.toLowerCase().includes('password')){
-                throw new Error('password not valid')
-            }
-        }
+        maxlength:150
+        
     }
 });
 
