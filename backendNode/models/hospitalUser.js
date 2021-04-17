@@ -1,3 +1,4 @@
+
 const mongoose=require('mongoose')
 
 const Schema=mongoose.Schema;
@@ -11,7 +12,7 @@ const HospitalUser= new Schema({
     },
 
     contactnumber:{
-        typr:Number,
+        type:Number,
         required:true,
         maxlength:10
     },
@@ -29,9 +30,12 @@ const HospitalUser= new Schema({
         maxlength:150
         
     }
-});
+  })
 
-const Hospitaluser=mongoose.model("hospitaluser",HospitalUser)
+
+
+
+const Hospitaluser = mongoose.model("hospitaluser", HospitalUser);
 
 //export
-module.exports=Hospitaluser
+module.exports = Hospitaluser;
