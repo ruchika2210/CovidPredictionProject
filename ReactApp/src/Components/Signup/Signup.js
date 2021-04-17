@@ -19,31 +19,34 @@ function Signup() {
   };
 
   const handleSubmit = (e) => {
-    console.log(name, password, email);
- 
-    axios.all([
-
+    if (activeTab === "Individual") {
       axios
-      .post("http://localhost:5000/signup", { name,email,password,number })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      }),
-      
+        .post("http://localhost:5000/signup", { name, email, password })
+        .then((response) => {
+          if (response.data.res === "Successful") {
+            console.log("DONE");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
       axios
-      .post("http://localhost:5000/signupHospital", { name,email,password,number })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-
-
-    ])
-    
+        .post("http://localhost:5000/signupHospital", {
+          name,
+          email,
+          password,
+          number,
+        })
+        .then((response) => {
+          if (response.data.res === "Successful") {
+            console.log("DONE");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
     setname("");
     setemail("");
     setpassword("");

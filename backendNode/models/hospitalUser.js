@@ -1,39 +1,39 @@
+const mongoose = require("mongoose");
 
-const mongoose=require('mongoose')
+const Schema = mongoose.Schema;
 
-const Schema=mongoose.Schema;
+const HospitalUser = new Schema({
+  hospitalname: {
+    type: String,
+    required: true,
+    maxlength: 50,
+  },
 
+  contactnumber: {
+    type: Number,
+    required: true,
+    maxlength: 10,
+  },
 
-const HospitalUser= new Schema({
-    Hospitalname:{
-        type:String,
-        required:true,
-        maxlength:50
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    maxlength: 255,
+  },
+
+  password: {
+    type: String,
+    required: true,
+  },
+  staff: [
+    {
+      name: String,
+      email: String,
+      number: Number,
     },
-
-    contactnumber:{
-        type:Number,
-        required:true,
-        maxlength:10
-    },
-
-    email:{
-        type:String,
-        required:true,
-        unique:true,
-        maxlength:255
-    },
-
-    password:{
-        type:String,
-        required:true,
-        maxlength:150
-        
-    }
-  })
-
-
-
+  ],
+});
 
 const Hospitaluser = mongoose.model("hospitaluser", HospitalUser);
 
