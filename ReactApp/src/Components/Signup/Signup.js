@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./Signup.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Card } from "react-bootstrap";
+import covidPng from "../../Images/covid.png";
 
 function Signup() {
   const [activeTab, setactiveTab] = useState("Individual");
@@ -68,141 +70,157 @@ function Signup() {
   };
 
   return (
-    <>
-      <div className="tabsContainerSignup">
-        <div className="tabIndividual">
-          {activeTab === "Individual" ? (
-            <div className="active">Individual</div>
-          ) : (
-            <div
-              onClick={handleTabchangeIndividual}
-              style={{ cursor: "pointer" }}
-            >
-              Individual
-            </div>
-          )}
-        </div>
-        <div className="tabHospital">
-          {activeTab === "Hospital" ? (
-            <div className="active">Hospital</div>
-          ) : (
-            <div
-              onClick={handleTabchangeHospital}
-              style={{ cursor: "pointer" }}
-            >
-              Hospital
-            </div>
-          )}
-        </div>
+    <div className="loginSignupContainer">
+      <div className="loginImageContainer">
+        <img
+          style={{ width: "600px" }}
+          src={covidPng}
+          className="LoginSignupPng"
+        />
       </div>
-      {activeTab === "Individual" ? (
-        <form>
-          <h3>Sign Up</h3>
+      <div className="d-flex align-items-center justify-content-center h-100 ">
+        <Card
+          style={{ padding: "2rem" }}
+          className="shadow p-3 mb-5 bg-white rounded w-25"
+        >
+          <Card.Body>
+            <div className="tabsContainerSignup">
+              <div className="tabIndividual">
+                {activeTab === "Individual" ? (
+                  <div className="active">Individual</div>
+                ) : (
+                  <div
+                    onClick={handleTabchangeIndividual}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Individual
+                  </div>
+                )}
+              </div>
+              <div className="tabHospital">
+                {activeTab === "Hospital" ? (
+                  <div className="active">Hospital</div>
+                ) : (
+                  <div
+                    onClick={handleTabchangeHospital}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Hospital
+                  </div>
+                )}
+              </div>
+            </div>
+            {activeTab === "Individual" ? (
+              <form>
+                <h3>Sign Up</h3>
 
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Name"
-              onChange={(e) => setname(e.target.value)}
-              value={name}
-            />
-          </div>
+                <div className="form-group">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Name"
+                    onChange={(e) => setname(e.target.value)}
+                    value={name}
+                  />
+                </div>
 
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Enter email"
-              onChange={(e) => setemail(e.target.value)}
-              value={email}
-            />
-          </div>
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter email"
+                    onChange={(e) => setemail(e.target.value)}
+                    value={email}
+                  />
+                </div>
 
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter password"
-              onChange={(e) => setpassword(e.target.value)}
-              value={password}
-            />
-          </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Enter password"
+                    onChange={(e) => setpassword(e.target.value)}
+                    value={password}
+                  />
+                </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary btn-block"
-            onClick={handleSubmit}
-          >
-            Sign Up
-          </button>
-          <p className="forgot-password text-right">
-            Already registered <a href="/sign-in">sign in?</a>
-          </p>
-        </form>
-      ) : (
-        <form>
-          <h3>Sign Up</h3>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block"
+                  onClick={handleSubmit}
+                >
+                  Sign Up
+                </button>
+                <p className="forgot-password text-right">
+                  Already registered <a href="/sign-in">sign in?</a>
+                </p>
+              </form>
+            ) : (
+              <form>
+                <h3>Sign Up</h3>
 
-          <div className="form-group">
-            <label>Hospital Name</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Hospital name"
-              onChange={(e) => setname(e.target.value)}
-              value={name}
-            />
-          </div>
-          <div className="form-group">
-            <label>Contact Number</label>
-            <input
-              type="number"
-              className="form-control"
-              placeholder="Number"
-              onChange={(e) => setnumber(e.target.value)}
-              value={number}
-            />
-          </div>
+                <div className="form-group">
+                  <label>Hospital Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Hospital name"
+                    onChange={(e) => setname(e.target.value)}
+                    value={name}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Contact Number</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    placeholder="Number"
+                    onChange={(e) => setnumber(e.target.value)}
+                    value={number}
+                  />
+                </div>
 
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Enter email"
-              onChange={(e) => setemail(e.target.value)}
-              value={email}
-            />
-          </div>
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter email"
+                    onChange={(e) => setemail(e.target.value)}
+                    value={email}
+                  />
+                </div>
 
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter password"
-              onChange={(e) => setpassword(e.target.value)}
-              value={password}
-            />
-          </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Enter password"
+                    onChange={(e) => setpassword(e.target.value)}
+                    value={password}
+                  />
+                </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary btn-block"
-            onClick={(e) => handleSubmit(e)}
-          >
-            Sign Up
-          </button>
-          <p className="forgot-password text-right">
-            Already registered <Link to="/sign-in">sign in?</Link>
-          </p>
-        </form>
-      )}
-    </>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block"
+                  onClick={(e) => handleSubmit(e)}
+                >
+                  Sign Up
+                </button>
+                <p className="forgot-password text-right">
+                  Already registered <Link to="/sign-in">sign in?</Link>
+                </p>
+              </form>
+            )}
+          </Card.Body>
+        </Card>
+      </div>
+    </div>
   );
 }
 

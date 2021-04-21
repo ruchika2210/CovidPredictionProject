@@ -29,3 +29,30 @@
 .active {
   font-weight: 700;
 }
+
+.loginSignupContainer {
+  height: calc(100vh - 56px);
+  width: 100%;
+}
+
+.loginImageContainer {
+  position: absolute;
+  right: 10%;
+  bottom: 20%;
+  z-index: -1;
+  opacity: 0.5;
+}
+.LoginSignupPng {
+  animation: bounce 9s linear infinite;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
