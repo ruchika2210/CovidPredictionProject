@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import covidPng from "../../Images/covid.png";
 
-export default function Login() {
+export default function Login({ user, setuser }) {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [alert, setalert] = useState("");
@@ -18,13 +18,22 @@ export default function Login() {
   const handleSubmit = (e) => {
     //request to server
     axios
-      .post("/signin", { email, password })
+      .post("http://localhost:5000/signin", { email, password })
       .then((response) => {
         console.log(response.data);
 
-        if (response.data.res !== "Successful") {
+        if (response.data.res != "Successful") {
           //setting alert message if some issue is that
           setalert(response.data.res);
+        } else {
+          setalert(null);
+          const userObj = response.data.user;
+
+          delete userObj["password"];
+          delete userObj["__v"];
+
+          console.log(userObj);
+          setuser(userObj);
         }
       })
       .catch((error) => console.log(error));
@@ -52,7 +61,7 @@ export default function Login() {
             <form>
               <h3>Sign In</h3>
               {alert ? (
-                <div class="alert alert-danger " role="alert">
+                <div className="alert alert-danger " role="alert">
                   {alert}
                 </div>
               ) : null}

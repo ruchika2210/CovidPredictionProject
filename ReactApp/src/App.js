@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Switch, Route, Link } from "react-router-dom";
 
@@ -8,14 +8,28 @@ import Taketest from "./Components/TakeTest/Taketest";
 import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
+  const [user, setuser] = useState("");
+
+  useEffect(() => {
+    console.log(user, "set state");
+  }, [user]);
+
   return (
     <>
-      <Navbar />
+      <Navbar user={user} setuser={setuser} />
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route path="/sign-in" component={Login} />
-        <Route path="/sign-up" component={SignUp} />
-        <Route path="/take-test" component={Taketest} />
+        <Route exact path="/">
+          <Login user={user} setuser={setuser} />
+        </Route>
+        <Route path="/sign-in">
+          <Login user={user} setuser={setuser} />
+        </Route>
+        <Route path="/sign-up">
+          <SignUp user={user} setuser={setuser} />
+        </Route>
+        <Route path="/take-test">
+          <Taketest user={user} setuser={setuser} />
+        </Route>
       </Switch>
     </>
   );
