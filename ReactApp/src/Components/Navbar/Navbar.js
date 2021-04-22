@@ -15,7 +15,7 @@ function Navbar({ user }) {
         </Link>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           {user ? (
-            <div className="navbar-nav ml-auto">{user.email}</div>
+            <div className="navbar-nav ml-auto">Hello, {user.name}</div>
           ) : (
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
