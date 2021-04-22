@@ -85,7 +85,7 @@ router.post("/signupHospital", async (req, res) => {
           email,
           password,
         });
-        await user.save();
+        await user.save();  
         res.send({ res: "Successful" });
       });
     } else {

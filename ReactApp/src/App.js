@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login";
 import SignUp from "./Components/Signup/Signup";
 import Taketest from "./Components/TakeTest/Taketest";
 import Navbar from "./Components/Navbar/Navbar";
+import Home from "./Components/Home/Home";
 
 function App() {
   const [user, setuser] = useState("");
@@ -19,7 +20,7 @@ function App() {
       <Navbar user={user} setuser={setuser} />
       <Switch>
         <Route exact path="/">
-          <Login user={user} setuser={setuser} />
+          <Home />
         </Route>
         <Route path="/sign-in">
           <Login user={user} setuser={setuser} />
@@ -30,6 +31,10 @@ function App() {
         <Route path="/take-test">
           <Taketest user={user} setuser={setuser} />
         </Route>
+
+        {/* <Route path="/carousel">
+        <Carousel></Carousel>
+      </Route> */}
       </Switch>
     </>
   );
