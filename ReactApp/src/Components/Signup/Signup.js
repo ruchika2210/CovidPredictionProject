@@ -112,7 +112,7 @@ function Signup() {
             </div>
             {activeTab === "Individual" ? (
               <form>
-                <h3>Sign Up</h3>
+                <h3 className="text-center">Sign Up</h3>
 
                 <div className="form-group">
                   <label>Name</label>

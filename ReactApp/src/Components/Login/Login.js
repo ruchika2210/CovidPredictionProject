@@ -59,11 +59,11 @@ export default function Login({ user, setuser, setUserType }) {
       <div className="d-flex align-items-center justify-content-center h-100 ">
         <Card
           style={{ padding: "2rem" }}
-          className="shadow p-3 mb-5 bg-white rounded w-25"
+          className="shadow p-3 mb-5 bg-white rounded w-25 text-left"
         >
           <Card.Body>
             <form>
-              <h3>Sign In</h3>
+              <h3 className="text-center">Sign In</h3>
               {alert ? (
                 <div className="alert alert-danger " role="alert">
                   {alert}

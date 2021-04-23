@@ -55,7 +55,7 @@ function UserScreen({ user, userType }) {
                     onChange={(e) => setname(e.target.value)}
                   ></input>
                 ) : (
-                  <p>{user.email}</p>
+                  <p>{user.name}</p>
                 )}
               </Row>
             </Col>
