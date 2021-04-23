@@ -94,9 +94,12 @@ function Taketest() {
         <Row>
           <Col>
             {result == "Negative" && (
-              <div className="alert alert-primary text-center" role="alert">
-                Result is Negative
-              </div>
+              <>
+                <div className="alert alert-primary text-center" role="alert">
+                  Result is Negative
+                </div>
+                <p className=" text-center">Stay safe, Stay Healthy</p>
+              </>
             )}
             {result == "Positive" && (
               <>
