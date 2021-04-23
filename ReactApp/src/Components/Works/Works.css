@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100&display=swap");
+
+.work {
+  text-align: center;
+  font-family: "Gothic A1", sans-serif;
+  background-color: #cad5e2;
+  font-weight: bolder;
+  padding: 2rem;
+  margin-top: -24px;
+}
+
+.work p {
+  font-size: 25px;
+}
+.work h1 {
+  font-weight: bolder;
+}
+
+.card {
+  box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.9s;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* @media only screen and (max-width: 450px) {
+
+  } */

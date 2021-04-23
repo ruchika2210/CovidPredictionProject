@@ -91,22 +91,6 @@ export default function Login({ user, setuser, setUserType }) {
                 />
               </div>
 
-              <div className="form-group">
-                <div className="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="customCheck1"
-                  />
-                  <label
-                    className="custom-control-label"
-                    htmlFor="customCheck1"
-                  >
-                    Remember me
-                  </label>
-                </div>
-              </div>
-
               <button
                 type="submit"
                 className="btn btn-primary btn-block"
@@ -114,9 +98,6 @@ export default function Login({ user, setuser, setUserType }) {
               >
                 Submit
               </button>
-              <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
-              </p>
             </form>
           </Card.Body>
         </Card>
