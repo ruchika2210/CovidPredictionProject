@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import covidPng from "../../Images/covid.png";
+import { useHistory } from "react-router-dom";
 
 export default function Login({ user, setuser }) {
+  const history = useHistory();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [alert, setalert] = useState("");
@@ -34,6 +36,7 @@ export default function Login({ user, setuser }) {
 
           console.log(userObj);
           setuser(userObj);
+          history.push("/");
         }
       })
       .catch((error) => console.log(error));
