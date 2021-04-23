@@ -7,8 +7,8 @@ function Navbar({ user }) {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light ">
-        <Link className="navbar-brand" to={"/sign-in"}>
-          CovidPredictionSystem
+        <Link className="navbar-brand" to={"/"}>
+          Covid Detection System
         </Link>
         <Link className="navbar-brand" to={"/take-test"}>
           Take test

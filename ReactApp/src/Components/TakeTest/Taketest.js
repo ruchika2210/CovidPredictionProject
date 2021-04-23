@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router";
 var FormData = require("form-data");
@@ -72,7 +72,7 @@ function Taketest({ user }) {
               Upload images in only png/jpeg/jpg
             </h6>
           </Row>
-          <Row style={{ marginTop: "2rem  " }}>
+          <Row style={{ marginTop: "2rem", marginBottom: "1rem" }}>
             <Col className="d-flex align-items-center">
               <input
                 type="file"
