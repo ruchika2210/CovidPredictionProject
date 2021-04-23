@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 import covidPng from "../../Images/covid.png";
 import { useHistory } from "react-router-dom";
 
-export default function Login({ user, setuser }) {
+export default function Login({ user, setuser, setUserType }) {
   const history = useHistory();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -36,6 +36,7 @@ export default function Login({ user, setuser }) {
 
           console.log(userObj);
           setuser(userObj);
+          setUserType(response.data.type);
           history.push("/");
         }
       })

@@ -7,26 +7,31 @@ const hospitalUser = require("../models/hospitalUser");
 const bcrypt = require("bcrypt");
 const { findOne } = require("../models/normalUser");
 const { json } = require("body-parser");
+const { route } = require("./upload");
 const saltRounds = 10;
 
 //Signin route
 router.post("/signin", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
+  let userType;
   try {
     // check user is normal user
     let user = await normalUser.findOne({ email });
     if (!user) {
       // check user is hospital if not normal
       user = await hospitalUser.findOne({ email });
+      userType = "Hospital";
+    } else {
+      userType = "Individual";
     }
     if (user) {
       //decrpyt password and check
       bcrypt.compare(password, user.password).then(function (result) {
         // if password matches
+
         if (result) {
-          res.send({ res: "Successful", user });
+          res.send({ res: "Successful", user, type: userType });
         }
         //password is invalid
         else {
@@ -85,7 +90,7 @@ router.post("/signupHospital", async (req, res) => {
           email,
           password,
         });
-        await user.save();  
+        await user.save();
         res.send({ res: "Successful" });
       });
     } else {
@@ -95,9 +100,11 @@ router.post("/signupHospital", async (req, res) => {
     console.log(err);
     res.send(err);
   }
+});
 
-
-
+//api to edit user
+router.post("/edituser", (req, res) => {
+  console.log(res.data);
 });
 
 module.exports = router;

@@ -7,29 +7,44 @@ import SignUp from "./Components/Signup/Signup";
 import Taketest from "./Components/TakeTest/Taketest";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Home/Home";
+import UserScreen from "./Components/UserScreen/UserScreen";
 
 function App() {
   const [user, setuser] = useState("");
+  const [userType, setUserType] = useState("");
 
   useEffect(() => {
-    console.log(user, "set state");
-  }, [user]);
+    console.log(user, userType, "set state");
+  }, [user, userType]);
 
   return (
     <>
-      <Navbar user={user} setuser={setuser} />
+      <Navbar
+        user={user}
+        setuser={setuser}
+        userType={userType}
+        setUserType={setUserType}
+      />
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
         <Route path="/sign-in">
-          <Login user={user} setuser={setuser} />
+          <Login
+            user={user}
+            setuser={setuser}
+            userType={userType}
+            setUserType={setUserType}
+          />
         </Route>
         <Route path="/sign-up">
-          <SignUp user={user} setuser={setuser} />
+          <SignUp />
         </Route>
         <Route path="/take-test">
-          <Taketest user={user} setuser={setuser} />
+          <Taketest user={user} />
+        </Route>
+        <Route path="/user">
+          <UserScreen user={user} userType={userType} />
         </Route>
 
         {/* <Route path="/carousel">
