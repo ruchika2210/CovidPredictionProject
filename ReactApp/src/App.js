@@ -7,6 +7,7 @@ import SignUp from "./Components/Signup/Signup";
 import Taketest from "./Components/TakeTest/Taketest";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Home/Home";
+import Works from "./Components/Works/Works";
 
 function App() {
   const [user, setuser] = useState("");
@@ -21,6 +22,7 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+          <Works />
         </Route>
         <Route path="/sign-in">
           <Login user={user} setuser={setuser} />

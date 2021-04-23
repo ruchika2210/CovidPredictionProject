@@ -1,0 +1,11 @@
+.Caption {
+  text-align: center;
+  color: navy;
+  font-size: xx-large;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 1200px;
+}
+
+.Image {
+  opacity: 0.5;
+}
