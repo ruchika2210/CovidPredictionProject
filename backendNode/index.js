@@ -33,6 +33,6 @@ app.get("/store", async (req, res) => {
 // Temp for sms
 const sendSms = require("./sms/sms");
 app.get("/hello", async (req, res) => {
-  const response = sendSms("Hello User", ["9429669754", "9265083859"]);
-  res(response);
+  const response = sendSms("Hello User", ["9624786187", "9265083859"]);
+  res.send(response);
 });
