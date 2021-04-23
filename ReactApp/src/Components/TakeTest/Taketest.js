@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
+import { useHistory } from "react-router";
 var FormData = require("form-data");
 
-function Taketest() {
+function Taketest({ user }) {
   const [sendingData, setsendingData] = useState(false);
   const [result, setResult] = useState();
-
+  const history = useHistory();
   const [{ alt, src }, setImg] = useState({
     src: "",
     alt: "Upload an Image",
   });
+
+  useEffect(() => {
+    if (!user) {
+      history.push("/sign-in");
+    }
+  }, [user]);
 
   const [img, setImage] = useState();
 
@@ -26,8 +33,10 @@ function Taketest() {
 
   const handleSubmit = (e) => {
     setsendingData(true);
+    // Library so we can send image to api
     var formData = new FormData();
     console.log("Submit method");
+    // addition of image
     formData.append("IMG", img);
     console.log(formData);
     axios
