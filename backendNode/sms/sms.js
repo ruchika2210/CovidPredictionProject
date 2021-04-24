@@ -8,6 +8,7 @@ const sendSms = (message, numbers) => {
     numbers: numbers,
   };
   fast2sms.sendMessage(options).then((response) => {
+    console.log(response);
     return response;
   });
 };

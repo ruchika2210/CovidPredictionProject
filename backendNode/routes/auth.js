@@ -9,6 +9,7 @@ const { findOne } = require("../models/normalUser");
 const { json } = require("body-parser");
 const { route } = require("./upload");
 const Normaluser = require("../models/normalUser");
+const Hospitaluser = require("../models/hospitalUser");
 const saltRounds = 10;
 
 //Signin route
@@ -127,6 +128,30 @@ router.post("/edituser", async (req, res) => {
         }
       );
     }
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
+router.post("/editstaff", async (req, res) => {
+  const id = req.body.id;
+  try {
+    Hospitaluser.findByIdAndUpdate(
+      id,
+      { staff: req.body.staff },
+      async (err, docs) => {
+        if (err) {
+          res.send(err);
+        } else {
+          const email = req.body.email;
+          let user = await Hospitaluser.findOne({ _id: id });
+          if (user) {
+            res.send({ res: "Successful", user, type: req.body.userType });
+          }
+        }
+      }
+    );
   } catch (err) {
     console.log(err);
     res.send(err);

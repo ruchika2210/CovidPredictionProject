@@ -29,7 +29,6 @@ const HospitalUser = new Schema({
   staff: [
     {
       name: String,
-      email: String,
       number: Number,
     },
   ],

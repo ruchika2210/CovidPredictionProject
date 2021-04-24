@@ -41,7 +41,7 @@ function App() {
           <SignUp />
         </Route>
         <Route path="/take-test">
-          <Taketest user={user} />
+          <Taketest user={user} userType={userType} />
         </Route>
         <Route path="/user">
           <UserScreen user={user} userType={userType} setuser={setuser} />

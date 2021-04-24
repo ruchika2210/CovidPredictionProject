@@ -5,6 +5,8 @@ const router = express.Router();
 const path = require("path");
 const fs = require("fs");
 const { default: axios } = require("axios");
+const Hospitaluser = require("../models/hospitalUser");
+const sendSms = require("../sms/sms");
 
 let extension = "";
 
@@ -58,6 +60,10 @@ router.post("/", async (req, res) => {
           msg: "Error: No File Selected!",
         });
       } else {
+        const body = JSON.parse(JSON.stringify(req.body));
+        console.log(body, Object.keys(body));
+        const userType = body.usertype;
+        const id = body.id;
         console.log("Image is uploaded successfully");
         var formData = new FormData({ maxDataSize: 10000000000 });
 
@@ -72,7 +78,11 @@ router.post("/", async (req, res) => {
             headers: formData.getHeaders(),
           })
           .then((response) => {
+            if (userType == "Hospital") {
+              SENDSMSTOUSERS(id, response.data);
+            }
             res.json(response.data);
+
             //For deleting the used File
             fs.unlinkSync(process.cwd() + "/uploads/X-RAY" + extension);
           });
@@ -80,5 +90,17 @@ router.post("/", async (req, res) => {
     }
   });
 });
+
+const SENDSMSTOUSERS = async (id, text) => {
+  c;
+  try {
+    let user = await Hospitaluser.findOne({ _id: id });
+    const numbers = user.staff.map((person) => String(person.number));
+    console.log(numbers);
+    const response = await sendSms(text.result + "Report", numbers);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 module.exports = router;

@@ -4,7 +4,7 @@ import axios from "axios";
 import { useHistory } from "react-router";
 var FormData = require("form-data");
 
-function Taketest({ user }) {
+function Taketest({ user, userType }) {
   const [sendingData, setsendingData] = useState(false);
   const [result, setResult] = useState();
   const history = useHistory();
@@ -38,6 +38,8 @@ function Taketest({ user }) {
     console.log("Submit method");
     // addition of image
     formData.append("IMG", img);
+    formData.append("usertype", userType);
+    formData.append("id", user._id);
     console.log(formData);
     axios
       .post("http://localhost:5000/upload", formData, {
