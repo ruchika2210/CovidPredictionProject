@@ -92,7 +92,7 @@ router.post("/", async (req, res) => {
 });
 
 const SENDSMSTOUSERS = async (id, text) => {
-  c;
+  
   try {
     let user = await Hospitaluser.findOne({ _id: id });
     const numbers = user.staff.map((person) => String(person.number));

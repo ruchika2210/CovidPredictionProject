@@ -114,7 +114,7 @@ function Signup() {
               <form>
                 <h3 className="text-center">Sign Up</h3>
 
-                <div className="form-group">
+                <div className="form-group" style={{ textAlign: "left" }}>
                   <label>Name</label>
                   <input
                     type="text"
@@ -125,7 +125,7 @@ function Signup() {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" style={{ textAlign: "left" }}>
                   <label>Email</label>
                   <input
                     type="email"
@@ -136,7 +136,7 @@ function Signup() {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group"  style={{ textAlign: "left" }}>
                   <label>Password</label>
                   <input
                     type="password"
@@ -162,7 +162,7 @@ function Signup() {
               <form>
                 <h3>Sign Up</h3>
 
-                <div className="form-group">
+                <div className="form-group" style={{ textAlign: "left" }}>
                   <label>Hospital Name</label>
                   <input
                     type="text"
@@ -172,7 +172,7 @@ function Signup() {
                     value={name}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ textAlign: "left" }}>
                   <label>Contact Number</label>
                   <input
                     type="number"
@@ -183,7 +183,7 @@ function Signup() {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" style={{ textAlign: "left" }}>
                   <label>Email</label>
                   <input
                     type="email"
@@ -194,9 +194,9 @@ function Signup() {
                   />
                 </div>
 
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
+                <div className="form-group"  style={{ textAlign: "left" }}>
+                  <label >Password</label>
+                  <input 
                     type="password"
                     className="form-control"
                     placeholder="Enter password"
