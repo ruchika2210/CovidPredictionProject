@@ -44,7 +44,7 @@ function App() {
           <Taketest user={user} />
         </Route>
         <Route path="/user">
-          <UserScreen user={user} userType={userType} />
+          <UserScreen user={user} userType={userType} setuser={setuser} />
         </Route>
 
         {/* <Route path="/carousel">

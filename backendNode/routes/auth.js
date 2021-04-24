@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const { findOne } = require("../models/normalUser");
 const { json } = require("body-parser");
 const { route } = require("./upload");
+const Normaluser = require("../models/normalUser");
 const saltRounds = 10;
 
 //Signin route
@@ -103,8 +104,33 @@ router.post("/signupHospital", async (req, res) => {
 });
 
 //api to edit user
-router.post("/edituser", (req, res) => {
-  console.log(res.data);
+router.post("/edituser", async (req, res) => {
+  try {
+    if (req.body.userType === "Individual") {
+      const id = req.body.id;
+      Normaluser.findByIdAndUpdate(
+        id,
+        {
+          name: req.body.name,
+          email: req.body.email,
+        },
+        async (err, docs) => {
+          if (err) {
+            res.send(err);
+          } else {
+            const email = req.body.email;
+            let user = await normalUser.findOne({ email });
+            if (user) {
+              res.send({ res: "Successful", user, type: req.body.userType });
+            }
+          }
+        }
+      );
+    }
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
 });
 
 module.exports = router;

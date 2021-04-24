@@ -1,33 +1,28 @@
 import axios from "axios";
-import FormData from "form-data";
+
 import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
-function UserScreen({ user, userType }) {
+function UserScreen({ user, userType, setuser }) {
   const [name, setname] = useState(user.name);
   const [email, setemail] = useState(user.email);
   const [toggle, setToggle] = useState(false);
 
   const handleSubmit = () => {
-    console.log("Called");
-    // Library so we can send changes to api
-    var formData = new FormData();
-    console.log("Submit method");
-    formData.append("id", user._id);
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("userType", userType);
-    console.log(formData);
+    console.log("Inside method");
     axios
-      .post("http://localhost:5000/edituser", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data; ",
-        },
+      .post("http://localhost:5000/edituser", {
+        id: user._id,
+        name,
+        email,
+        userType,
       })
       .then((response) => {
-        console.log(response);
-        const result = response.data.result;
-        console.log(result);
+        const userObj = response.data.user;
+        delete userObj["password"];
+        delete userObj["__v"];
+        setuser(userObj);
+        setToggle(false);
       })
       .catch((err) => console.log(err, "error"));
   };
@@ -49,6 +44,8 @@ function UserScreen({ user, userType }) {
                 {toggle ? (
                   <input
                     type="text"
+                    id="name"
+                    name="name"
                     class="form-control"
                     placeholder="Enter name"
                     value={name}
@@ -69,6 +66,8 @@ function UserScreen({ user, userType }) {
                 {toggle ? (
                   <input
                     type="email"
+                    name="email"
+                    id="email"
                     class="form-control"
                     placeholder="Enter email"
                     value={email}
@@ -84,7 +83,7 @@ function UserScreen({ user, userType }) {
             <Col>
               {toggle ? (
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-outline-success"
                   onClick={() => handleSubmit()}
                 >

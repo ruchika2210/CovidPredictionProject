@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 
-function Navbar({ user }) {
+function Navbar({ user, userType }) {
   console.log(user, "navbar user");
 
   const history = useHistory();
@@ -21,13 +21,25 @@ function Navbar({ user }) {
         </Link>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           {user ? (
-            <div
-              className="navbar-nav ml-auto"
-              style={{ cursor: "pointer" }}
-              onClick={handleUserClick}
-            >
-              Hello, {user.name}
-            </div>
+            <>
+              {userType === "Individual" ? (
+                <div
+                  className="navbar-nav ml-auto"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleUserClick}
+                >
+                  Hello, {user.name}
+                </div>
+              ) : (
+                <div
+                  className="navbar-nav ml-auto"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleUserClick}
+                >
+                  {user.hospitalname}
+                </div>
+              )}
+            </>
           ) : (
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">

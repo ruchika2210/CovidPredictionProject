@@ -22,8 +22,6 @@ export default function Login({ user, setuser, setUserType }) {
     axios
       .post("http://localhost:5000/signin", { email, password })
       .then((response) => {
-        console.log(response.data);
-
         if (response.data.res != "Successful") {
           //setting alert message if some issue is that
           setalert(response.data.res);
