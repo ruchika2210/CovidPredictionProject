@@ -9,13 +9,13 @@ const TestTaken = new Schema({
     maxlength: 50,
   },
 
-  _id: {
-    type: String
+  userID: {
+    type: String,
   },
 
   date: {
     type: Date,
-    default:Date.now
+    default: Date.now,
   },
 });
 

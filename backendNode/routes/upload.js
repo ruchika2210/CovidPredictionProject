@@ -7,7 +7,7 @@ const fs = require("fs");
 const { default: axios } = require("axios");
 const Hospitaluser = require("../models/hospitalUser");
 const sendSms = require("../sms/sms");
-
+const testtaken = require("../models/testTaken");
 let extension = "";
 
 // set storage engine
@@ -64,6 +64,8 @@ router.post("/", async (req, res) => {
         console.log(body, Object.keys(body));
         const userType = body.usertype;
         const id = body.id;
+        const name = body.name;
+        console.log(name);
         console.log("Image is uploaded successfully");
         var formData = new FormData({ maxDataSize: 10000000000 });
 
@@ -77,12 +79,18 @@ router.post("/", async (req, res) => {
           .post("http://127.0.0.1:5000/uppp", formData, {
             headers: formData.getHeaders(),
           })
-          .then((response) => {
+          .then(async (response) => {
             if (userType == "Hospital") {
-              SENDSMSTOUSERS(id, response.data);
+              SENDSMSTOUSERS(id, response.data.result, name);
             }
             res.json(response.data);
 
+            try {
+              const entry = await testtaken({ name, userID: id });
+              await entry.save();
+            } catch (err) {
+              console.log(err);
+            }
             //For deleting the used File
             fs.unlinkSync(process.cwd() + "/uploads/X-RAY" + extension);
           });
@@ -91,15 +99,18 @@ router.post("/", async (req, res) => {
   });
 });
 
-const SENDSMSTOUSERS = async (id, text) => {
+const SENDSMSTOUSERS = async (id, text, name) => {
   try {
     let user = await Hospitaluser.findOne({ _id: id });
     const numbers = user.staff.map((person) => String(person.number));
     console.log(numbers);
-    const response = await sendSms(text.result + "Report", numbers);
+
+    const response = await sendSms(getMessage(text, name) + "Report", numbers);
   } catch (err) {
     console.log(err);
   }
 };
 
 module.exports = router;
+
+const getMessage = (text, name) => `${name} Covid test report is ${text}`;

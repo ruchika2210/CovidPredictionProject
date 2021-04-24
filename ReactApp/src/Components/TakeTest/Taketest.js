@@ -13,6 +13,8 @@ function Taketest({ user, userType }) {
     alt: "Upload an Image",
   });
 
+  const [name, setName] = useState();
+
   useEffect(() => {
     if (!user) {
       history.push("/sign-in");
@@ -40,6 +42,11 @@ function Taketest({ user, userType }) {
     formData.append("IMG", img);
     formData.append("usertype", userType);
     formData.append("id", user._id);
+    if (userType == "Hospital") {
+      formData.append("name", name);
+    } else {
+      formData.append("name", user.name);
+    }
     console.log(formData);
     axios
       .post("http://localhost:5000/upload", formData, {
@@ -74,6 +81,19 @@ function Taketest({ user, userType }) {
               Upload images in only png/jpeg/jpg
             </h6>
           </Row>
+          {userType === "Hospital" && (
+            <Row style={{ marginTop: "1rem" }}>
+              <Col xs={3}>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Patient name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </Col>
+            </Row>
+          )}
           <Row style={{ marginTop: "2rem", marginBottom: "1rem" }}>
             <Col className="d-flex align-items-center">
               <input

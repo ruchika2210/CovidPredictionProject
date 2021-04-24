@@ -127,12 +127,34 @@ router.post("/edituser", async (req, res) => {
           }
         }
       );
+    } else {
+      const id = req.body.id;
+      Hospitaluser.findByIdAndUpdate(
+        id,
+        {
+          name: req.body.name,
+          email: req.body.email,
+        },
+        async (err, docs) => {
+          if (err) {
+            res.send(err);
+          } else {
+            const email = req.body.email;
+            let user = await Hospitaluser.findOne({ email });
+            if (user) {
+              res.send({ res: "Successful", user, type: req.body.userType });
+            }
+          }
+        }
+      );
     }
   } catch (err) {
     console.log(err);
     res.send(err);
   }
 });
+
+//Used to edit staff number and name in hospital
 
 router.post("/editstaff", async (req, res) => {
   const id = req.body.id;
