@@ -139,8 +139,9 @@ router.post("/edituser", async (req, res) => {
           if (err) {
             res.send(err);
           } else {
+            console.log(docs);
             const email = req.body.email;
-            let user = await Hospitaluser.findOne({ email });
+            let user = await Hospitaluser.findOne({ id });
             if (user) {
               res.send({ res: "Successful", user, type: req.body.userType });
             }

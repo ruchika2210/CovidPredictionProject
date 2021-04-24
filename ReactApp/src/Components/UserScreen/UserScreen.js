@@ -66,6 +66,7 @@ function UserScreen({ user, userType, setuser }) {
         const userObj = response.data.user;
         delete userObj["password"];
         delete userObj["__v"];
+        console.log(userObj, "userobj");
         setuser(userObj);
 
         console.log(response);

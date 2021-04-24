@@ -105,7 +105,7 @@ const SENDSMSTOUSERS = async (id, text, name) => {
     const numbers = user.staff.map((person) => String(person.number));
     console.log(numbers);
 
-    const response = await sendSms(getMessage(text, name) + "Report", numbers);
+    const response = await sendSms(getMessage(text, name), numbers);
   } catch (err) {
     console.log(err);
   }
