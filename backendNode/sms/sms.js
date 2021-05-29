@@ -3,7 +3,7 @@ const fast2sms = require("fast-two-sms");
 const sendSms = (message, numbers) => {
   var options = {
     authorization:
-      "IcH06pujTyWMlEDvmfiK4RBbSkZLAh1ozaJxPY7nstgFV8wUOQnPk0Yl3QBDIdA2E4qtLJKMfip1Wh8r",
+      "8GUYfvQETAmdx5ChHaMkWKtpoJBr1gsu7Ne6OD4wXcLzyZI92SW86lSzAo0IKNDYw4nhsmOMyp2aXZTg",
     message: message,
     numbers: numbers,
   };

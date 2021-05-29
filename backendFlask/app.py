@@ -41,10 +41,6 @@ def model_predict(img_path, cnnModel):
     op = str((cnnModel.predict(x) > 0.5).astype("int32")[0][0])
     return op
 
-@app.route('/', methods=['GET'])
-def index():
-    # Main page
-    return render_template('index.html')
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -87,11 +83,7 @@ def upp():
         result= result
     )
     
-@app.route('/ad',methods=['POST'])
-def abcd():
-    print(request.files)
-    print('asdf')
-    return 'abcd'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
